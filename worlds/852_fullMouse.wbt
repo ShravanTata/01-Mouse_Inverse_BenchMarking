@@ -1,0 +1,1056 @@
+#VRML_SIM V8.5 utf8
+WorldInfo {
+  gravity 0 -981 0
+  physics "mouse_hind_support"
+  basicTimeStep 1
+  contactProperties [
+    DEF conveyer ContactProperties {
+      material1 "belt"
+      material2 "base"
+      bounce 0
+    }
+    DEF hindContact ContactProperties {
+      material1 "foot"
+      material2 "floor"
+      coulombFriction [
+        -1
+      ]
+      bounce 0.1
+    }
+    ContactProperties {
+      material1 "floor"
+      material2 "forepaw"
+      coulombFriction [
+        50000
+      ]
+    }
+  ]
+}
+Viewpoint {
+  orientation 0.095649317 0.99030984 0.10068578 4.7308463
+  position -26.829651 4.459029 2.0503914
+}
+Background {
+  skyColor [
+    0 0.2 0.2
+  ]
+}
+DirectionalLight {
+  ambientIntensity 1
+  direction 0.7 0.7 0
+  castShadows TRUE
+}
+DirectionalLight {
+  ambientIntensity 1
+  direction -0.7 -0.7 0
+  castShadows TRUE
+}
+Floor {
+  translation 0 -4 0
+  contactMaterial "floor"
+  size 100 100
+  tileSize 5 5
+  texture [
+    "textures/checkered_marble.jpg"
+  ]
+}
+DEF JOINT_T Transform {
+  translation -20 -20 0
+  children [
+    DEF JOINT Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0 0 1
+        }
+      }
+      geometry Sphere {
+        radius 0.325
+      }
+      castShadows FALSE
+    }
+  ]
+}
+DEF SPINE Transform {
+  translation -20 -20 0
+  children [
+    DEF SPINE_T Transform {
+      rotation 1 0 0 1.5707
+      children [
+        DEF SPINE Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Capsule {
+            height 7.6767
+            radius 0.35535
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF SKULL_T Transform {
+  translation -20 -20 4.66344
+  children [
+    DEF SKULL Shape {
+      appearance Appearance {
+        material Material {
+          diffuseColor 0.2 0.2 0.2
+        }
+      }
+      geometry IndexedFaceSet {
+        coord Coordinate {
+          point [
+            0.069174 0.240255 3.39696
+            -0.375219 -0.330696 3.788091
+            0.198639 -0.01899 3.539187
+            0.221418 -0.387009 3.873375
+            0.536715 0.060156 3.965562
+            0.507951 -0.184158 4.380183
+            -0.446184 0.480672 4.317552
+            -0.564831 0.185166 3.923874
+            0.542115 0.078849 4.371714
+            -0.230346 0.502272 4.76361
+            -0.584433 0.279954 4.363209
+            0.472437 0.624321 4.479696
+            -0.645174 0.05517 4.277961
+            -0.514332 0.19971 4.81914
+            0.429372 0.485748 4.470624
+            -0.240759 0.627858 4.61304
+            0.367155 0.356832 4.420494
+            0.076392 0.881658 4.95594
+            0.358101 0.454464 4.79439
+            0.615717 0.227304 4.96962
+            -0.404127 -0.133848 4.84083
+            0.042777 -0.353241 4.63032
+            -0.618021 0.278469 4.98078
+            -0.289377 0.218304 4.99491
+            0.233865 0.538848 4.91742
+            0.399429 0.501849 4.87998
+            -0.369009 0.557505 4.79862
+            -0.338895 0.770661 4.7763
+            0.254898 -0.014499 5.0679
+            0.260451 0.206901 4.92435
+            0.446139 0.061344 4.68414
+            -0.546039 0.181593 4.93569
+            0.517806 0.194877 4.88808
+            -0.307503 0.202347 5.23251
+            0.255735 0.533115 5.2866
+            -0.051678 0.838791 5.28291
+            0.247239 0.772479 5.03037
+            -0.274797 0.431523 5.36193
+            0.034389 1.013283 5.15907
+            -0.175833 0.115083 5.45886
+            0.172872 0.123741 5.51988
+            -0.06948 0.491517 5.9814
+            0.20637 0.592533 5.78106
+            -0.061632 0.694962 5.70582
+          ]
+        }
+        solid FALSE
+        coordIndex [
+          2, 1, 0, -1, 1, 7, 0, -1, 3, 1
+          2, -1, 6, 0, 7, -1, 2, 4, 3, -1
+          6, 16, 0, -1, 2, 16, 4, -1, 2, 0
+          16, -1, 21, 1, 3, -1, 7, 1, 12, -1
+          5, 3, 4, -1, 8, 5, 4, -1, 16, 8
+          4, -1, 10, 6, 7, -1, 16, 6, 9, -1
+          20, 12, 1, -1, 12, 10, 7, -1, 6, 27
+          15, -1, 16, 14, 8, -1, 8, 14, 11, -1
+          14, 17, 11, -1, 21, 3, 5, -1, 26, 27
+          6, -1, 32, 8, 11, -1, 26, 6, 10, -1
+          32, 11, 25, -1, 27, 17, 15, -1, 17, 27
+          38, -1, 14, 16, 30, -1, 19, 8, 32, -1
+          22, 13, 10, -1, 21, 20, 1, -1, 25, 30
+          32, -1, 22, 10, 12, -1, 30, 5, 8, -1
+          26, 10, 13, -1, 30, 8, 19, -1, 6, 15
+          9, -1, 18, 17, 14, -1, 5, 30, 29, -1
+          30, 16, 29, -1, 13, 9, 15, -1, 14, 30
+          25, -1, 9, 13, 23, -1, 23, 12, 20, -1
+          31, 12, 23, -1, 31, 23, 13, -1, 31, 22
+          12, -1, 15, 26, 13, -1, 18, 16, 9, -1
+          14, 25, 18, -1, 28, 21, 5, -1, 18, 29
+          16, -1, 38, 11, 17, -1, 25, 29, 18, -1
+          5, 29, 28, -1, 18, 9, 24, -1, 24, 17
+          18, -1, 11, 36, 25, -1, 23, 20, 33, -1
+          24, 25, 17, -1, 15, 17, 35, -1, 24, 9
+          34, -1, 27, 35, 38, -1, 34, 25, 24, -1
+          17, 25, 36, -1, 11, 38, 36, -1, 33, 20
+          39, -1, 39, 20, 21, -1, 34, 9, 37, -1
+          34, 19, 32, -1, 34, 29, 25, -1, 34, 28
+          29, -1, 26, 15, 35, -1, 26, 35, 27, -1
+          23, 37, 9, -1, 39, 21, 40, -1, 21, 28
+          40, -1, 17, 36, 35, -1, 13, 33, 31, -1
+          30, 19, 28, -1, 28, 32, 30, -1, 33, 37
+          23, -1, 37, 33, 13, -1, 40, 19, 34, -1
+          34, 37, 43, -1, 34, 32, 28, -1, 33, 39
+          31, -1, 22, 37, 13, -1, 19, 40, 28, -1
+          22, 39, 37, -1, 22, 31, 39, -1, 37, 39
+          41, -1, 43, 42, 34, -1, 34, 42, 40, -1
+          38, 35, 36, -1, 41, 39, 40, -1, 43, 37
+          41, -1, 42, 41, 40, -1, 41, 42, 43, -1
+        ]
+      }
+    }
+  ]
+}
+DEF PELVIS Transform {
+  translation -20 -20 0
+  children [
+    DEF PELVIS_T Transform {
+      rotation 1 0 0 1.5707
+      children [
+        DEF PELVIS Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.4 0 0.6
+            }
+          }
+          geometry Capsule {
+            height 1.8133
+            radius 0.23341
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF FEMUR Transform {
+  translation -20 -20 0
+  children [
+    DEF FEMUR_T Transform {
+      rotation 1 0 0 0
+      children [
+        DEF FEMUR Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.25 0.4
+            }
+          }
+          geometry Capsule {
+            height 1.2986
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF TIBIA Transform {
+  translation -20 -20 0
+  children [
+    DEF TIBIA_T Transform {
+      children [
+        DEF TIBIA Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.8 0.1 0.1
+            }
+          }
+          geometry Capsule {
+            height 1.7007
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF HINDPAW Transform {
+  translation -20 -20 0
+  children [
+    DEF HINDPAW_T Transform {
+      children [
+        DEF HINDPAW Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Capsule {
+            height 0.86218
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF SCAPULA Transform {
+  translation -20 -20 0
+  rotation 1 0 0 0
+  children [
+    DEF SCAPULA_T Transform {
+      rotation 1 0 0 2
+      children [
+        DEF SCAPULA Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.8 0.8
+            }
+          }
+          geometry Capsule {
+            height 0.9019
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF FORE_U Transform {
+  translation -20 -20 0
+  children [
+    DEF FORE_U_T Transform {
+      translation 0 0 -0.535
+      rotation 1 0 0 1.5707
+      children [
+        DEF FORE_U Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.1 0.75 0.2
+            }
+          }
+          geometry Capsule {
+            height 1.0703
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF FORE_L Transform {
+  translation -20 -20 0
+  children [
+    DEF FORE_L_T Transform {
+      children [
+        DEF FORE_L Shape {
+          appearance Appearance {
+            material Material {
+              diffuseColor 0.8 0.1 0.2
+            }
+          }
+          geometry Capsule {
+            height 1.3184
+            radius 0.3
+          }
+        }
+      ]
+    }
+  ]
+}
+DEF FOREPAW Transform {
+  translation -20 -20 0
+  children [
+    DEF FOREPAW_T Transform {
+      rotation 0 0 1 1.5707
+      children [
+        DEF FOREPAW Shape {
+          appearance Appearance {
+            material Material {
+            }
+          }
+          geometry Cylinder {
+            height 0.3
+            radius 0.266
+          }
+        }
+      ]
+    }
+  ]
+}
+Supervisor {
+  rotation 1 0 0 -0.75
+  children [
+    DEF spine Solid {
+      rotation 1 0 0 0
+      children [
+        USE SPINE_T
+        DEF skull Solid {
+          rotation 0 0 1 3.14
+          children [
+            USE SKULL
+          ]
+        }
+        DEF LEFT_HIND_LIMB Transform {
+          rotation 1 0 0 0
+          children [
+            DEF pelvis Solid {
+              translation 0.3375 0.03411 -1.24245
+              rotation 1 0 0 0.5
+              children [
+                USE PELVIS_T
+                DEF HIP_JOINT Transform {
+                  translation 0.1575 -0.05193 -0.27017
+                  rotation 0 0 1 0
+                  children [
+                    USE JOINT
+                    DEF HIP HingeJoint {
+                      jointParameters HingeJointParameters {
+                        minStop -0.8726
+                        maxStop 0.8726
+                      }
+                      device [
+                        RotationalMotor {
+                          name "HIP_LEFT"
+                          controlPID 75 0 0
+                          maxVelocity 100
+                          maxTorque 100000
+                        }
+                        PositionSensor {
+                          name "HIP_LEFT_POS"
+                        }
+                      ]
+                      endPoint DEF femur Solid {
+                        translation 0.17998997 -0.64938862 -2.113036e-07
+                        rotation 1 0 0 0
+                        children [
+                          USE FEMUR_T
+                          DEF KNEE_JOINT Transform {
+                            translation 0 -0.6493 0
+                            children [
+                              USE JOINT
+                            ]
+                          }
+                          DEF KNEE_J_T Transform {
+                            translation 0 -0.6493 0
+                            rotation 1 0 0 1.5707
+                            children [
+                              DEF knee HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  position -0.000730441
+                                  minStop -0.9599
+                                  maxStop 0.87266
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "KNEE_LEFT"
+                                    controlPID 75 0 0
+                                    maxVelocity 100
+                                    maxTorque 100000
+                                  }
+                                  PositionSensor {
+                                    name "KNEE_LEFT_POS"
+                                  }
+                                ]
+                                endPoint DEF tibia Solid {
+                                  translation 3.5591176e-09 -0.85034982 0.00065792179
+                                  rotation -1 6.3594436e-07 3.1313207e-06 0.00073044138
+                                  children [
+                                    USE TIBIA_T
+                                    DEF ANKLE_JOINT Transform {
+                                      translation 0 -0.85035 0
+                                      children [
+                                        USE JOINT
+                                      ]
+                                    }
+                                    DEF ANKLE_J_T Transform {
+                                      translation 0 -0.85035 0
+                                      rotation 1 0 0 1.5707
+                                      children [
+                                        DEF ankle HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            position 2.38257e-07
+                                            minStop -1.74532
+                                            maxStop 1.74532
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "ANKLE_LEFT"
+                                              controlPID 75 0 0
+                                              maxVelocity 100
+                                              maxTorque 100000
+                                            }
+                                            PositionSensor {
+                                              name "ANKLE_LEFT_POS"
+                                            }
+                                          ]
+                                          endPoint DEF hindpaw Solid {
+                                            translation 1.2759189e-09 0.43107453 1.5370008e-07
+                                            rotation -0.99999811 4.9640419e-10 0.0019466552 -2.3825688e-07
+                                            children [
+                                              USE HINDPAW_T
+                                            ]
+                                            contactMaterial "foot"
+                                            boundingObject USE HINDPAW_T
+                                            physics Physics {
+                                              density -1
+                                              mass 0.344
+                                              centerOfMass [
+                                                0 0 0
+                                              ]
+                                              inertiaMatrix [
+                                                1.26 1.26 0.0061
+                                                0 0 0
+                                              ]
+                                            }
+                                            linearVelocity -5.0272748e-07 -0.010689686 0.0068147186
+                                            angularVelocity -0.0062917808 2.9080745e-07 5.6167055e-09
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                  boundingObject USE TIBIA_T
+                                  physics Physics {
+                                    density -1
+                                    mass 1
+                                    centerOfMass [
+                                      0 0 0
+                                    ]
+                                    inertiaMatrix [
+                                      4.1 6.8 3.73
+                                      0 0 0
+                                    ]
+                                  }
+                                  linearVelocity -2.5806765e-07 -0.0053436562 0.0040917016
+                                  angularVelocity -0.0062937486 2.9089378e-07 5.6167086e-09
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                        boundingObject USE FEMUR_T
+                        physics Physics {
+                          density -1
+                          mass 1.11126
+                          centerOfMass [
+                            0 0 0
+                          ]
+                          inertiaMatrix [
+                            9.1 4.24 6.28
+                            0 0 0
+                          ]
+                        }
+                        linearVelocity -1.450684e-08 5.6880927e-06 0.0020403411
+                        angularVelocity -0.0031424863 1.5263425e-07 5.6482405e-09
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE PELVIS_T
+              physics Physics {
+                density -1
+                mass 0.388
+                centerOfMass [
+                  0 0 0
+                ]
+                inertiaMatrix [
+                  2.36 6.34 6.7
+                  0 0 0
+                ]
+              }
+            }
+          ]
+        }
+        DEF RIGHT_HIND_LIMB Transform {
+          rotation 1 0 0 0
+          children [
+            DEF pelvis Solid {
+              translation -0.3375 0.03411 -1.24245
+              rotation 1 0 0 0.5
+              children [
+                USE PELVIS_T
+                DEF HIP_JOINT Transform {
+                  translation -0.1575 -0.05193 -0.27017
+                  children [
+                    USE JOINT
+                    DEF HIP HingeJoint {
+                      jointParameters HingeJointParameters {
+                        position -0.000729759
+                        minStop -0.87266
+                        maxStop 0.87266
+                      }
+                      device [
+                        RotationalMotor {
+                          name "HIP_RIGHT"
+                          controlPID 75 0 0
+                          maxVelocity 100
+                          maxTorque 100000
+                        }
+                        PositionSensor {
+                          name "HIP_RIGHT_POS"
+                        }
+                      ]
+                      endPoint DEF femur Solid {
+                        translation -0.17999512 -0.64934287 0.00047378834
+                        rotation 0.99994709 1.0116273e-05 -0.010286368 -0.00072975904
+                        children [
+                          USE FEMUR_T
+                          DEF KNEE_JOINT Transform {
+                            translation 0 -0.6493 0
+                            children [
+                              USE JOINT
+                            ]
+                          }
+                          DEF KNEE_J_T Transform {
+                            translation 0 -0.6493 0
+                            rotation 1 0 0 1.5707
+                            children [
+                              DEF knee HingeJoint {
+                                jointParameters HingeJointParameters {
+                                  position -0.000730438
+                                  minStop -0.9599
+                                  maxStop 0.87266
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "KNEE_RIGHT"
+                                    controlPID 75 0 0
+                                    maxTorque 100000
+                                  }
+                                  PositionSensor {
+                                    name "KNEE_RIGHT_POS"
+                                  }
+                                ]
+                                endPoint DEF tibia Solid {
+                                  translation 3.5591176e-09 -0.85034982 0.00065792179
+                                  rotation -1 6.3594436e-07 3.1313207e-06 0.00073044138
+                                  children [
+                                    USE TIBIA_T
+                                    DEF ANKLE_JOINT Transform {
+                                      translation 0 -0.85035 0
+                                      children [
+                                        USE JOINT
+                                      ]
+                                    }
+                                    DEF ANKLE_J_T Transform {
+                                      translation 0 -0.85035 0
+                                      rotation 1 0 0 1.5707
+                                      children [
+                                        DEF ankle HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                            position 2.38257e-07
+                                            minStop -1.74532
+                                            maxStop 1.74532
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "ANKLE_RIGHT"
+                                              controlPID 75 0 0
+                                              maxVelocity 100
+                                              maxTorque 100000
+                                            }
+                                            PositionSensor {
+                                              name "ANKLE_RIGHT_POS"
+                                            }
+                                          ]
+                                          endPoint DEF hindpaw Solid {
+                                            translation 1.2759189e-09 0.43107453 1.5370008e-07
+                                            rotation -0.99999811 4.9640419e-10 0.0019466552 -2.3825688e-07
+                                            children [
+                                              USE HINDPAW_T
+                                            ]
+                                            contactMaterial "foot"
+                                            boundingObject USE HINDPAW_T
+                                            physics Physics {
+                                              density -1
+                                              mass 0.344
+                                              centerOfMass [
+                                                0 0 0
+                                              ]
+                                              inertiaMatrix [
+                                                1.26 1.26 0.0061
+                                                0 0 0
+                                              ]
+                                            }
+                                            linearVelocity -5.0272748e-07 -0.010689686 0.0068147186
+                                            angularVelocity -0.0062917808 2.9080745e-07 5.6167055e-09
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                  boundingObject USE TIBIA_T
+                                  physics Physics {
+                                    density -1
+                                    mass 1
+                                    centerOfMass [
+                                      0 0 0
+                                    ]
+                                    inertiaMatrix [
+                                      4.1 6.8 3.73
+                                      0 0 0
+                                    ]
+                                  }
+                                  linearVelocity -2.5806765e-07 -0.0053436562 0.0040917016
+                                  angularVelocity -0.0062937486 2.9089378e-07 5.6167086e-09
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                        boundingObject USE FEMUR_T
+                        physics Physics {
+                          density -1
+                          mass 1.11126
+                          centerOfMass [
+                            0 0 0
+                          ]
+                          inertiaMatrix [
+                            9.1 4.24 6.28
+                            0 0 0
+                          ]
+                        }
+                        linearVelocity -1.450684e-08 5.6880927e-06 0.0020403411
+                        angularVelocity -0.0031424863 1.5263425e-07 5.6482405e-09
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE PELVIS_T
+              physics Physics {
+                density -1
+                mass 0.388
+                centerOfMass [
+                  0 0 0
+                ]
+                inertiaMatrix [
+                  2.36 6.34 6.7
+                  0 0 0
+                ]
+              }
+            }
+          ]
+        }
+        DEF LEFT_FORE_LIMB Transform {
+          children [
+            DEF scapula Solid {
+              translation 0.54144 -0.09288 2.97396
+              children [
+                DEF SCAPULA_J_T Transform {
+                  translation -0.08856 -0.44308 0.35424
+                  children [
+                    USE JOINT
+                  ]
+                }
+                Transform {
+                  children [
+                    USE SCAPULA_T
+                  ]
+                }
+                DEF FORE_U_J_T Transform {
+                  translation -0.08856 -0.44308 0.35424
+                  rotation -0.69585538 -0.69585538 0.1776811 0.703383
+                  children [
+                    DEF FORE_U_J HingeJoint {
+                      jointParameters HingeJointParameters {
+                      }
+                      device [
+                        RotationalMotor {
+                          name "FORE_U_LEFT"
+                          maxTorque 1e+06
+                        }
+                        PositionSensor {
+                          name "FORE_U_LEFT_POS"
+                        }
+                      ]
+                      endPoint DEF fore_u Solid {
+                        children [
+                          USE FORE_U_T
+                          Transform {
+                            translation 0 0 -1.0703
+                            children [
+                              USE JOINT
+                            ]
+                          }
+                          DEF FORE_L_J_T Transform {
+                            translation 0 0 -1.0703
+                            rotation 0 1 0 0.5
+                            children [
+                              DEF FORE_L_J HingeJoint {
+                                jointParameters HingeJointParameters {
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "FORE_L_LEFT"
+                                    maxTorque 1e+07
+                                  }
+                                  PositionSensor {
+                                    name "FORE_L_LEFT_POS"
+                                  }
+                                ]
+                                endPoint DEF fore_l Solid {
+                                  translation 0 -0.6592 0
+                                  children [
+                                    USE FORE_L_T
+                                    Transform {
+                                      translation 0 -0.6592 0
+                                      scale 0.9 1 1
+                                      children [
+                                        USE JOINT
+                                      ]
+                                    }
+                                    DEF FOREPAW_L_J_T Transform {
+                                      translation 0 -0.9192 0
+                                      children [
+                                        DEF FOREPAW_L_J HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "FOREPAW_LEFT"
+                                              maxTorque 10000
+                                            }
+                                            PositionSensor {
+                                              name "FOREPAW_LEFT_POS"
+                                            }
+                                          ]
+                                          endPoint DEF forepaw_l Solid {
+                                            children [
+                                              USE FOREPAW_T
+                                            ]
+                                            contactMaterial "forepaw"
+                                            boundingObject USE FOREPAW_T
+                                            physics Physics {
+                                              density -1
+                                              mass 1
+                                              centerOfMass [
+                                                0 0 0
+                                              ]
+                                              inertiaMatrix [
+                                                1 1 1
+                                                0 0 0
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                  boundingObject USE FORE_L_T
+                                  physics Physics {
+                                    density -1
+                                    mass 1
+                                    centerOfMass [
+                                      0 0 0
+                                    ]
+                                    inertiaMatrix [
+                                      1 1 1
+                                      0 0 0
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                        boundingObject USE FORE_U_T
+                        physics Physics {
+                          density -1
+                          mass 1
+                          centerOfMass [
+                            0 0 0
+                          ]
+                          inertiaMatrix [
+                            1 1 1
+                            0 0 0
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE SCAPULA_T
+              physics Physics {
+                density -1
+                mass 1
+                centerOfMass [
+                  0 0 0
+                ]
+                inertiaMatrix [
+                  1 1 1
+                  0 0 0
+                ]
+              }
+            }
+          ]
+        }
+        DEF RIGHT_FORE_LIMB Transform {
+          children [
+            DEF scapula Solid {
+              translation -0.54144 -0.09288 2.97396
+              rotation 1 0 0 0
+              children [
+                DEF SCAPULA_J_T Transform {
+                  translation -0.08856 -0.44308 0.35424
+                  children [
+                    USE JOINT
+                  ]
+                }
+                Transform {
+                  children [
+                    USE SCAPULA_T
+                  ]
+                }
+                DEF FORE_U_J_T Transform {
+                  translation -0.08856 -0.44308 0.35424
+                  rotation -0.69585538 0.69585538 -0.1776811 0.703383
+                  children [
+                    DEF FORE_U_J HingeJoint {
+                      jointParameters HingeJointParameters {
+                      }
+                      device [
+                        RotationalMotor {
+                          name "FORE_U_RIGHT"
+                          maxTorque 1e+07
+                        }
+                        PositionSensor {
+                          name "FORE_U_RIGHT_POS"
+                        }
+                      ]
+                      endPoint DEF fore_u Solid {
+                        children [
+                          USE FORE_U_T
+                          Transform {
+                            translation 0 0 -1.0703
+                            children [
+                              USE JOINT
+                            ]
+                          }
+                          DEF FORE_L_J_T Transform {
+                            translation 0 0 -1.0703
+                            rotation 0 1 0 -0.5
+                            children [
+                              DEF FORE_L_J HingeJoint {
+                                jointParameters HingeJointParameters {
+                                }
+                                device [
+                                  RotationalMotor {
+                                    name "FORE_L_RIGHT"
+                                    maxTorque 10000
+                                  }
+                                  PositionSensor {
+                                    name "FORE_L_RIGHT_POS"
+                                  }
+                                ]
+                                endPoint DEF fore_l Solid {
+                                  translation 0 -0.6592 0
+                                  children [
+                                    USE FORE_L_T
+                                    Transform {
+                                      translation 0 -0.6592 0
+                                      scale 0.9 1 1
+                                      children [
+                                        USE JOINT
+                                      ]
+                                    }
+                                    DEF FOREPAW_L_J_T Transform {
+                                      translation 0 -0.9192 0
+                                      children [
+                                        DEF FOREPAW_L_J HingeJoint {
+                                          jointParameters HingeJointParameters {
+                                          }
+                                          device [
+                                            RotationalMotor {
+                                              name "FOREPAW_RIGHT"
+                                              maxTorque 1e+07
+                                            }
+                                            PositionSensor {
+                                              name "FOREPAW_RIGHT_POS"
+                                            }
+                                          ]
+                                          endPoint DEF forepaw_l Solid {
+                                            children [
+                                              USE FOREPAW_T
+                                            ]
+                                            contactMaterial "forepaw"
+                                            boundingObject USE FOREPAW_T
+                                            physics Physics {
+                                              density -1
+                                              mass 1
+                                              centerOfMass [
+                                                0 0 0
+                                              ]
+                                              inertiaMatrix [
+                                                1 1 1
+                                                0 0 0
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                  boundingObject USE FORE_L_T
+                                  physics Physics {
+                                    density -1
+                                    mass 1
+                                    centerOfMass [
+                                      0 0 0
+                                    ]
+                                    inertiaMatrix [
+                                      1 1 1
+                                      0 0 0
+                                    ]
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        ]
+                        boundingObject USE FORE_U_T
+                        physics Physics {
+                          density -1
+                          mass 1
+                          centerOfMass [
+                            0 0 0
+                          ]
+                          inertiaMatrix [
+                            1 1 1
+                            0 0 0
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+              boundingObject USE SCAPULA_T
+              physics Physics {
+                density -1
+                mass 1
+                centerOfMass [
+                  0 0 0
+                ]
+                inertiaMatrix [
+                  1 1 1
+                  0 0 0
+                ]
+              }
+            }
+          ]
+        }
+      ]
+      name "spine"
+      boundingObject USE SPINE_T
+      physics Physics {
+        density -1
+        mass 5
+        centerOfMass [
+          0 0 0
+        ]
+      }
+      linearVelocity 2.6406113e-12 7.1308585e-08 -5.9165039e-08
+      angularVelocity 1.0019756e-06 5.9546066e-09 -7.5123124e-10
+    }
+  ]
+  name "mouse"
+  boundingObject USE SPINE_T
+  physics Physics {
+    density -1
+    mass 25
+    centerOfMass [
+      0 0 0
+    ]
+    inertiaMatrix [
+      1 1 1
+      0 0 0
+    ]
+  }
+  controller "hindLimb"
+}

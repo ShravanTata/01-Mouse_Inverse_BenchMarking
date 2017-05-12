@@ -1,0 +1,28 @@
+ifeq ($(UNAME),Darwin)
+webots_homes = /Applications/Webots.app
+else
+webots_homes = \
+        /usr/local/webots$(subst .,,$(webotsVersion)) \
+        /usr/local/webots-manager/$(webotsVersion)
+endif
+
+WEBOTS_HOME = $(word 1,$(wildcard $(webots_homes)))
+
+ifeq ($(WEBOTS_HOME),)
+$(error Failed to find webots home is webots installed?)
+endif
+
+
+includes = \
+	$(WEBOTS_HOME)/resources/Makefile.include \
+	$(WEBOTS_HOME)/resources/projects/default/plugins/physics/Makefile.include \
+	$(WEBOTS_HOME)/resources/physics/plugins/Makefile.include \
+	$(WEBOTS_HOME)/projects/default/physics/plugins/Makefile.include
+
+first = $(word 1,$(wildcard $(includes)))
+
+ifneq ($(first),)
+include $(first)
+else
+$(error Failed to find webots plugin makefile, is webots installed?)
+endif

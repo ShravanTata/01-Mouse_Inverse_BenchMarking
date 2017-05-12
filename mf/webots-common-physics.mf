@@ -1,0 +1,9 @@
+UNAME ?= $(shell uname)
+ifeq ($(UNAME),Darwin)
+WEBOTS_HOME ?= /Applications/Webots
+EXTRA_CFLAGS=-mmacosx-version-min=10.7 -arch i386 -arch x86_64
+else
+WEBOTS_HOME ?= /usr/local/webots$(webotsVersion)
+
+endif
+
