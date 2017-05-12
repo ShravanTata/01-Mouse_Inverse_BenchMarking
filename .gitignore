@@ -1,4 +1,5 @@
 .DS_STORE
 *.dylib
-hindLimb
-conveyer
+controllers/hindLimb/hindLimb
+controllers/conveyer/conveyer
+build
