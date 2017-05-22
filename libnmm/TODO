@@ -1,0 +1,6 @@
+Working version, v0.1
+next step : 
+1) Implement the EventManager
+2) Remove the maps by vector using enum instead of strings (types.h)
+3) Externalise all parameters
+4) Create a xml file description of the neuromuscular model

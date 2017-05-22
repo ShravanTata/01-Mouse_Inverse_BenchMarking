@@ -32,7 +32,7 @@ void webots_physics_step() {
 	
 	dWebotsConsolePrintf("Position %f",body_Spine_pos[1]);
 
-	lift_force = 750000 * (0 - body_Spine_pos[1]) - 1000*body_Spine_vel[1];
+	lift_force = 75000 * (- 0.5 - body_Spine_pos[1]) - 1000*body_Spine_vel[1];
 
 	dBodyAddForce(body_Spine, 0, lift_force ,0);
 	//

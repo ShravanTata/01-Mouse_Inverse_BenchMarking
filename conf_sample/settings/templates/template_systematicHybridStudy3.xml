@@ -1,0 +1,44 @@
+<settings>
+<assume_stabilized_after>5</assume_stabilized_after>
+  <config>../../conf_|CONF|/</config>
+  <systematic_search_type>recursive</systematic_search_type>
+  <systematic_search_prefix>_fdb3_cpg3_|PREFIX|</systematic_search_prefix>
+  <config_cpg_scheme>cpg_interneurons3_|PREFIX|.txt</config_cpg_scheme>
+  <config_cpg_type>full</config_cpg_type>
+  <config_cpg_parameters>cpg_parameters3.txt</config_cpg_parameters>
+  <config_cpg_data>3</config_cpg_data>
+  <config_systematic_parameters>hybridStudy3</config_systematic_parameters>
+  <cpg_strong_sync>1</cpg_strong_sync>
+  <cpg_biPhasic>1</cpg_biPhasic>
+  <distance_max>800.0</distance_max>
+  <duration_max>8000.0</duration_max>
+  <rescale_parameters>0</rescale_parameters>
+  <muscle_step_number>40</muscle_step_number>
+  <noise_muscle>0</noise_muscle>
+  <noise_entity>0</noise_entity>
+  <noise_sensor>0</noise_entity>
+  <noise_variationCoefficient>0.01</noise_variationCoefficient>
+  <delay>1</delay>
+  <jWang_changes>1</jWang_changes>
+  <transfer_function>1</transfer_function>
+  <transfer_function_motoneurons>1</transfer_function_motoneurons>
+
+  <reload_param_on_touchdown>0</reload_param_on_touchdown>
+  <restart_simulation_at_end>1</restart_simulation_at_end>
+  <noAngleOffset>1</noAngleOffset>
+
+<experiment>
+        fullReflex{p_file=param3.txt,start_after_step=3}
+        semiCpg{start_after_step=3}
+	systematicStudy{start_after_step=3}
+</experiment>
+
+
+  <launching_gate>1.2_delay.txt</launching_gate>
+
+  <cpg_strong_sync>1</cpg_strong_sync>
+  <save_for_matlab>0</save_for_matlab>
+  <save_for_matlab_overwrite>4</save_for_matlab_overwrite>
+  <save_for_matlab_folder>session11/</save_for_matlab>
+<!--  <feedback2study>glu__mff_swing</feedback2study>-->
+</settings>

@@ -16,7 +16,7 @@ static dBodyID body_Reference;
 static dBodyID body_Support;
 
 static dJointID joint_Fixed;
-static dJointID joint_PR_ZX;
+static dJointID joint_Rotate_X;
 static dJointID joint_Slider_Y;
 
 void webots_physics_step() {
@@ -48,22 +48,21 @@ void webots_physics_init()
 	dJointSetFixed (joint_Fixed); // Initialize the joint
 
 
-	// Create a Slider  joint in Y direction for lateral movement support between the reference body and the spine
+	// Create a Rotation joint in X direction for lateral movement support between the reference body and the spine
 
-	joint_Slider_Y = dJointCreateSlider(world,0); // Create a slider joint
+	joint_Rotate_X = dJointCreateHinge(world,0); // Create a slider joint
 
-	dJointAttach (joint_Slider_Y,body_Support ,body_Reference); // Attach joint between reference and pelvis
+	dJointAttach (joint_Rotate_X, body_Reference, body_Support); // Attach joint between reference and pelvis
 
-	dJointSetSliderAxis(joint_Slider_Y, 0 ,1, 0); // Create a slider along the z-axis
+	dJointSetHingeAxis(joint_Rotate_X, 1 ,0, 0); // Create a slider along the z-axis
 
 	// Create a prismatic-rotaide joint in Y direction for height support between the reference and the spine
 
-	joint_PR_ZX = dJointCreatePR(world,0); // Create a slider joint
+	joint_Slider_Y = dJointCreateSlider(world,0); // Create a slider joint
 
-	dJointAttach (joint_PR_ZX ,body_Support, body_Spine); // Attach joint between reference and pelvis
-	
-	dJointSetPRAxis1(joint_PR_ZX, 0 ,0, 1); // Create a slider along the z-axis
-	dJointSetPRAxis2(joint_PR_ZX, 1 ,0, 0); // Create a slider along the z-axis
+	dJointAttach (joint_Slider_Y, body_Support, body_Spine); // Attach joint between reference and pelvis
+
+	dJointSetSliderAxis(joint_Slider_Y, 0 ,1, 0); // Create a slider along the z-axis
 
 }
 

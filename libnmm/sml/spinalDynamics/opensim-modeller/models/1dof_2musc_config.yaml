@@ -1,0 +1,28 @@
+- parameters : bool
+  visualize : true
+  save_simulation_results : true
+  save_model : true
+  load_from_file : true
+  load_parameters : false
+  contact : false
+  coordinate : true
+  controller : true
+- parameters : string
+  save_simulation_results/filename : /tmp/simulation_results_10dof_18musc.sto
+  save_model/filename : 1dof_2musc.osim
+  load_from_file/filename : ../src/opensim-model/models/1dof_2musc.osim
+  load_parameters/filename : ../src/opensim-model/models/1dof_2musc_param.txt
+  controller/type : PrescribedController
+- parameters : table
+  headers_type : string string string
+  headers_name : contact/geom_name contact/mesh_file contact/body_name
+  content : foot1 foot_rectangle.obj calcn_l
+            foot2 foot_rectangle.obj calcn_r
+- parameters : table
+  headers_type : int bool
+  headers_name : coordinate/id coordinate/locked
+  content : 0 true
+- parameters : table
+  headers_type : string double double double double
+  headers_name : controller/muscles_name controller/p0 controller/p1 controller/p2 controller/p3
+  content : biceps 0.5 3 0.3 1

@@ -1,0 +1,17 @@
+- parameters : bool
+  visualize : true
+  save_simulation_results : true
+  save_results : true
+  save_model : false
+  load_from_file : false
+  load_parameters : false
+  contact : false
+- parameters : string
+  save_simulation_results/filename : /tmp/simulation_results_10dof_18musc.sto
+  save_model/filename : 10dof_18musc.osim
+  blockGeom : foot.obj
+- parameters : table
+  headers_type : string string string
+  headers_name : contact/geom_name contact/mesh_file contact/body_name
+  content : cube foot.obj block
+  #blockMesh : blockRemesh192.obj

@@ -1,0 +1,12 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+libdir=${prefix}/lib/spinalDynamics
+includedir=${prefix}/include/spinalDynamics
+
+Name: spinalDynamics
+Description: spinal dynamics modelling api
+Requires:
+Version: 0.1
+Cflags: -I${includedir}/
+Libs: -L${libdir} -ldynamics -lsetting-manager -ltimer -lyaml-cpp
+
+

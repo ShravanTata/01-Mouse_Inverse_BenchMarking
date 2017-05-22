@@ -1,0 +1,72 @@
+*** Installation ***
+
+spinalDynamics uses CMake to support cross-platform building. 
+In a UNIX-like system, the basic steps to build are:
+
+1. Download and install CMake (if you don't have root privileges, just install to a local directory, like ~/bin)
+
+2. Clone the repository 
+
+With recursize : git clone --recursive https://gitlab.com/srill-fb99/spinaldynamics.git
+
+Without : git clone https://gitlab.com/srill-fb99/spinaldynamics.git
+
+If you did clone the repository without the --recursive option submodule you will need to fetch them.
+This can be done as follow :
+
+	git submodule init
+	git submodule update
+	git submodule foreach 'git submodule init'
+	git submodule foreach 'git submodule update'
+
+3. From the source directory, run:
+
+	mkdir build
+	cd build
+	cmake ..
+
+and then the usual
+
+	make 
+
+Not that parallel compilation works, e.g. make -jN, where N corresponds to the number of core to be used
+
+If you want to install it locally use 
+ 
+	cmake -DCMAKE_INSTALL_PREFIX:PATH=$HOME/.local/usr/ ../
+   	make
+	make install
+
+
+4. To clean up, just remove the 'build' directory.
+
+
+
+*** Use ***
+
+1. Running tests
+
+Tests can be found in the bin directory.
+setting-manager and dynamics comes with a set of unit test. 
+They can be launched with 
+
+	cd build/bin
+
+To launch the test related to the dynamics library simply run :
+
+	./dynamicsTest # --help to see the different options
+
+To launch the test related to the setting-manager library simply run :
+
+	./setting-managerTest # --help to see the different options
+
+
+2. Launching the opensim-modeller with a simple twitching controller
+
+	cd build/bin
+	./opensim-modelDemo ../models/10dof_18musc_config.yaml
+
+The ../models/ folder contains 
+- the different models (ending with .osim file)
+- the config files (ending with .yaml file)
+

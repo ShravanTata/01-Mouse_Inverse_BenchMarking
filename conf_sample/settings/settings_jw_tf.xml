@@ -1,0 +1,68 @@
+<!--
+
+	GENERAL INFORMATION
+		jWang_changes : 1
+		transfer_function: 1
+		muscle_step_number : 1
+		notf_trunklean : 0
+		delay : 1
+
+-->
+<settings>
+  <config>../../conf_sample/</config>
+<!--  <config_cpg_data>1.3_1</config_cpg_data>-->
+  <systematic_search_type>recursion</systematic_search_type>
+  <systematic_search_prefix>1</systematic_search_prefix>
+<!--  <config_cpg_scheme>cpg_interneurons_cst.txt</config_cpg_scheme>-->
+  <config_cpg_scheme>cpg_interneurons_off_cpg.txt</config_cpg_scheme>
+  <config_cpg_type>full</config_cpg_type>
+  <config_cpg_parameters>cpg_parameters.txt</config_cpg_parameters>
+  <config_cpg_data>sample</config_cpg_data>
+  <config_systematic_parameters>test</config_systematic_parameters>
+  <cpg_strong_sync>1</cpg_strong_sync>
+  <distance_max>30.0</distance_max>
+  <duration_max>200.0</duration_max>
+  <rescale_parameters>0</rescale_parameters>
+  <muscle_step_number>40</muscle_step_number>
+  <noise_muscle>0</noise_muscle>
+  <noise_entity>0</noise_entity>
+  <noise_sensor>0</noise_entity>
+  <noise_type>sqrt</noise_type>
+  <noise_class>constant</noise_class>
+  <noise_variationCoefficient>0.0003</noise_variationCoefficient>
+  <delay>1</delay> <!--    <delay>1</delay> -->
+  <jWang_changes>1</jWang_changes>
+  <transfer_function>1</transfer_function>
+  <transfer_function_motoneurons>0</transfer_function_motoneurons>
+  <fixedViewPoint>1</fixedViewPoint>
+  <reload_param_on_touchdown>0</reload_param_on_touchdown>
+  <restart_simulation_at_end>1</restart_simulation_at_end>
+  <noAngleOffset>1</noAngleOffset>
+
+<experiment>
+	fullReflex{p_file=param3.txt,start_after_step=300}
+</experiment>
+
+
+  <launching_gate>1.3_jw_tf</launching_gate>
+<!--  <optimization_scheme>-1</optimization_scheme>-->
+  <cpg_strong_sync>1</cpg_strong_sync>
+  <save_for_matlab>0</save_for_matlab>
+  <save_for_matlab_overwrite>4</save_for_matlab_overwrite>
+  <save_for_matlab_folder>sessionTest/</save_for_matlab>
+  <stimulation_scheme>1</stimulation_scheme>
+  <stimulation_scheme_muscle>RIGHT_VAS</stimulation_scheme_muscle>
+  <coman>0</coman>
+  <reverted_knee>0</reverted_knee>
+  <time_step>1</time_step>
+  <torque_soft_limit>1</torque_soft_limit>
+  <neverstop>1</neverstop>
+  <!--
+  <perturbation>1</perturbation>  
+  <perturbation_duration>0.4</perturbation_duration>
+  <perturbation_amplitude>4000</perturbation_amplitude>
+  <perturbation_startingMode>gaitPercentage</perturbation_startingMode>
+  <perturbation_phase>all</perturbation_phase>
+  <perturbation_stepPercentageBetween>10</perturbation_stepPercentageBetween>
+-->
+</settings>

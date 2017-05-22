@@ -1,0 +1,7 @@
+add_definitions(-std=c++11)
+include_directories(./)
+include_directories(../lib/)
+aux_source_directory(./ SOURCES)
+add_executable(${PROJECT_NAME}Test ${SOURCES})
+target_include_directories (${PROJECT_NAME}Test PUBLIC ${CMAKE_SOURCE_DIR}/../Catch/include)
+target_link_libraries (${PROJECT_NAME}Test LINK_PUBLIC ${PROJECT_NAME})

@@ -1,0 +1,65 @@
+Webots input
+============
+
+sml->Input[INPUT::THETA_TRUNK] = -this->getFromDef("REGIS")->getOrientation()[5];
+sml->Input[INPUT::ANKLE_RIGHT] = this->getFromDef("ANKLE_RIGHT")->getPosition()[1];
+sml->Input[INPUT::COM_Y]       = this->getFromDef("REGIS")->getPosition()[1];
+sml->Input[INPUT::COM_X]       = this->getFromDef("REGIS")->getPosition()[2];
+
+Constant 
+========
+
+    
+    sml->Constant[CONSTANT::ANGLE_INIT::LEFT_HIP] = 
+        Regis->getFromDef("LEFT_HIP")->getField("rotation")->getSFRotation()[0]*
+        Regis->getFromDef("LEFT_HIP)->getField("rotation")->getSFRotation()[3];    
+    
+    
+    sml->Constant[CONSTANT::ANGLE_INIT::LEFT_KNEE]
+    sml->Constant[CONSTANT::ANGLE_INIT::LEFT_ANLKE]
+    sml->Constant[CONSTANT::ANGLE_INIT::RIGHT_HIP]
+    sml->Constant[CONSTANT::ANGLE_INIT::RIGHT_KNEE]
+    sml->Constant[CONSTANT::ANGLE_INIT::RIGHT_ANLKE]
+    
+    
+To implement for webots sml
+===========================
+    DO A ENABLE POSITION ON EACH WEBOTS JOINT
+    enablePosition(time_step);
+    
+                                    void Sml::initialise_communication();
+    sml/Sml.cc: In member function ‘void Sml::fixedYAxis(double)’:
+    sml/Sml.cc: In member function ‘void Sml::listen_()’:
+    sml/Sml.cc: In member function ‘void Sml::emit_()’:
+    sml/Sml.cc: In member function ‘void Sml::plotTextInWindow(int)’:
+
+
+
+
+Name change
+===========
+
+:::WARNING:::: WITH THE TOSTRING FUNCTION IN TYPES.cc
+
+INPUT
+        INPUT::SENSOR_HEEL_LEFT INPUT::FORCE_Y_HEEL_LEFT
+        INPUT::SENSOR_HEEL_RIGHT INPUT::FORCE_Y_HEEL_RIGHT
+        INPUT::SENSOR_TOE_LEFT INPUT::FORCE_Y_TOE_LEFT
+        INPUT::SENSOR_TOE_RIGHT INPUT::FORCE_Y_TOE_RIGHT
+R        INPUT::HIP_LEFT INPUT::POS_HIP_LEFT
+        INPUT::HIP_RIGHT INPUT::POS_HIP_RIGHT
+        INPUT::KNEE_LEFT INPUT::POS_KNEE_LEFT
+        INPUT::KNEE_RIGHT INPUT::POS_KNEE_RIGHT
+        INPUT::ANKLE_LEFT INPUT::POS_ANKLE_LEFT
+        INPUT::ANKLE_RIGHT INPUT::POS_ANKLE_RIGHT
+        INPUT::COM_Y INPUT::POS_COM_Y
+        INPUT::COM_X INPUT::POS_COM_X
+	
+	
+OUTPUT
+	OUTPUT::HIP_LEFT OUTPUT::TAU_HIP_LEFT
+	OUTPUT::HIP_RIGHT OUTPUT::TAU_HIP_RIGHT
+	OUTPUT::KNEE_LEFT OUTPUT::TAU_KNEE_LEFT
+	OUTPUT::KNEE_RIGHT OUTPUT::TAU_KNEE_RIGHT
+	OUTPUT::ANKLE_LEFT OUTPUT::TAU_ANKLE_LEFT
+	OUTPUT::ANKLE_RIGHT OUTPUT::TAU_ANKLE_RIGHT

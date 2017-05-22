@@ -1,0 +1,69 @@
+- parameters : bool
+  visualize : true
+  save_simulation_results : true
+  save_model : false
+  load_from_file : true
+  load_parameters : true
+  contact : false
+  coordinate : true
+  controller : true
+  controller/hasDuration : true
+- parameters : string
+  save_simulation_results/filename : /tmp/simulation_results_10dof_18musc.sto
+  save_model/filename : 10dof_18musc.osim
+  load_from_file/filename : ../models/10dof_18musc.osim
+  load_parameters/filename : ../models/10dof_18musc_param.txt
+  controller/type : TwitchingController
+- parameters : table
+  headers_type : string string string
+  headers_name : contact/geom_name contact/mesh_file contact/body_name
+  content : foot1 foot_rectangle.obj calcn_l
+            foot2 foot_rectangle.obj calcn_r
+- parameters : table
+  headers_type : string bool
+  headers_name : coordinate/name coordinate/locked
+  # Fixed to the world
+  ####################
+  content : pelvis_tilt true
+            pelvis_tx true
+            pelvis_ty true
+            lumbar_extension true
+  # In the ground
+  ###############
+  # content : pelvis_tilt false
+  #           pelvis_tx false
+  #           pelvis_ty false
+  #           lumbar_extension true
+  # In the ground fully locked
+  ############################
+  # content :  pelvis_tilt true
+  #            pelvis_tx true
+  #            pelvis_ty true
+  #            hip_flexion_r true
+  #            knee_angle_r true
+  #            ankle_angle_r true
+  #            hip_flexion_l true
+  #            knee_angle_l true
+  #            ankle_angle_l true
+  #            lumbar_extension true
+- parameters : table
+  headers_type : string
+  headers_name : controller/muscles_name
+  content : hamstrings_r
+            bifemsh_r
+            glut_max_r
+            iliopsoas_r
+            rect_fem_r
+            vasti_r
+            gastroc_r
+            soleus_r
+            tib_ant_r
+            hamstrings_l
+            bifemsh_l
+            glut_max_l
+            iliopsoas_l
+            rect_fem_l
+            vasti_l
+            gastroc_l
+            soleus_l
+            tib_ant_l

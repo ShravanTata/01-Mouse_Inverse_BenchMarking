@@ -1,0 +1,13 @@
+#!/bin/bash
+function mycopy {
+	git checkout $2
+	git push origin $2
+	git checkout $1
+}
+
+current=`git branch | grep '*'`
+current=${current/* /}
+export -f mycopy
+export current
+git branch | grep -v '* ' | xargs -i bash -c 'mycopy $current "$@"' _ {}
+git push origin $current

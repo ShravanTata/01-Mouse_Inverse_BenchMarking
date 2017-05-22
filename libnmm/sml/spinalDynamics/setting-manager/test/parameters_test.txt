@@ -1,0 +1,26 @@
+- parameters : double
+  p1 : 0.1
+  p2 : 0.2
+  p3 : 0.3
+- parameters : bool
+  b1 : Y
+  b2 : Y
+  b3 : F
+- parameters : string
+  list_name  :  muscles
+  list_content : A B C D E F
+- parameters : double
+  list_name  : 	muscles_length
+  list_content : 0.1 0.1 0.1
+- parameters : table
+  headers_type : string double double bool
+  headers_name : muscles_names muscles_pennation muscles_forces muscles_locked
+  content : A 0.1 100 true
+            B 0.2 200 true
+            C 0.3 300 true
+- parameters : table
+  headers_type : string string string
+  headers_name : contact/geom_name B C
+  content : cube A B
+            cube A B
+            cube A B

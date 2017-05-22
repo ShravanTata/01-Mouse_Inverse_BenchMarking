@@ -1,0 +1,20 @@
+#!/bin/bash
+function mycopy {
+	echo "$3"
+	echo "======="
+	git checkout $3
+	echo "copy file"
+	git checkout $2 $1
+	echo "commit"
+	git commit -m "file $1 copied from $2"
+	echo "come back"
+	git checkout $2
+}
+
+file=$1
+current=`git branch | grep '*'`
+current=${current/* /}
+export -f mycopy
+export file
+export current
+git branch | grep -v '* ' | xargs -i bash -c 'mycopy $file $current "$@"' _ {}

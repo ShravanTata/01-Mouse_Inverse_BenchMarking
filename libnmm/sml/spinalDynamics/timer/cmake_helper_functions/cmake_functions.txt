@@ -1,0 +1,182 @@
+include(ExternalProject)
+
+function(add_subproject project)
+
+    set (extra_macro_args ${ARGN})
+    # Did we get any optional args?
+    list(LENGTH extra_macro_args num_extra_args)
+    if (${num_extra_args} GREATER 0)
+        list(GET extra_macro_args 0 optional_arg)
+        set ( dependencies  ${optional_arg})
+    endif ()
+
+   ExternalProject_add(
+        ${project}
+        DEPENDS ${dependencies}
+        PREFIX ${project}
+        DOWNLOAD_COMMAND ""
+        CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
+        SOURCE_DIR ${CMAKE_SOURCE_DIR}/${project}
+   )
+
+endfunction(add_subproject)
+
+
+function(create_include_dir)
+    add_custom_command(
+            TARGET ${PROJECT_NAME}
+            PRE_BUILD
+            COMMAND rm -Rf ${CMAKE_SOURCE_DIR}/include
+            )
+endfunction(create_include_dir)
+
+function(rename_dir_header_include header)
+    add_custom_command(
+                TARGET ${PROJECT_NAME}
+                POST_BUILD
+                COMMAND find ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME} -type f | xargs perl -pi -e 's|${header}|${PROJECT_NAME}/${header}|g'
+                )
+endfunction(rename_dir_header_include)
+
+function(add_include_dir_header header)
+add_custom_command(
+            TARGET ${PROJECT_NAME}
+            POST_BUILD
+            COMMAND mkdir -p ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME} && cp ${CMAKE_CURRENT_SOURCE_DIR}/${header} ${CMAKE_SOURCE_DIR}/include/${PROJECT_NAME}/${header}
+            )
+endfunction(add_include_dir_header)
+
+function(add_local_library lib_name)
+    target_include_directories (${PROJECT_NAME} PUBLIC "${CMAKE_SOURCE_DIR}/../${lib_name}/include/")
+    add_library(${lib_name} SHARED IMPORTED)
+    #message(${CMAKE_INSTALL_PREFIX})
+    #set_target_properties( ${lib_name} PROPERTIES IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/../${lib_name}/bin/lib${lib_name}.a")
+    set_target_properties( ${lib_name} PROPERTIES IMPORTED_LOCATION "${CMAKE_INSTALL_PREFIX}/lib/lib${lib_name}.a")
+    target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${lib_name})  
+endfunction(add_local_library)
+
+function (pkgconfig_check lib dst_list)
+    execute_process(COMMAND pkg-config --cflags ${lib}
+                OUTPUT_VARIABLE var ERROR_QUIET)
+
+    set(${dst_list} ${var} PARENT_SCOPE)
+
+endfunction(pkgconfig_check)
+
+function (pkgconfig_add_library target lib_name)
+
+    function(link_directory lib_name dst_list)
+        execute_process(COMMAND pkg-config --libs-only-L ${lib_name}
+                    OUTPUT_VARIABLE var)
+
+        string(REGEX REPLACE "( +)|(\n)" "" var ${var})
+        string(REGEX REPLACE "-L" "" var ${var})
+
+        set(${dst_list} ${var} PARENT_SCOPE)
+
+
+    endfunction(link_directory)
+
+    function(link_library lib_name dst_list)
+        execute_process(COMMAND pkg-config --libs-only-l ${lib_name}
+                    OUTPUT_VARIABLE var)
+
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "(^ )|( $)" "" var ${var})
+
+        string(REGEX REPLACE "-l" "" var ${var})
+        #string(REGEX REPLACE "-l" "lib" var ${var})
+
+        #string(REGEX REPLACE "([A-Za-z_]+)" "\\1.so" var ${var})
+
+        set(${dst_list} ${var} PARENT_SCOPE)
+
+    endfunction(link_library)
+
+
+
+    function(include_directory lib_name dst_list)
+
+        execute_process(COMMAND pkg-config --libs-only-l ${lib_name}
+                    OUTPUT_VARIABLE var)
+
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "(^ )|( $)" "" var ${var})
+
+        string(REGEX REPLACE "-l" "" var ${var})
+        #string(REGEX REPLACE "-l" "lib" var ${var})
+
+        #string(REGEX REPLACE "([A-Za-z_]+)" "\\1.so" var ${var})
+
+        set(${dst_list} ${var} PARENT_SCOPE)
+
+    endfunction(include_directory)
+
+
+    function (pkgconfig option lib dst_list)
+
+        execute_process(COMMAND pkg-config ${option} ${lib}
+                    OUTPUT_VARIABLE var)
+
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "( +)|(\n)" " " var ${var})
+        string(REGEX REPLACE "(^ )|( $)" "" var ${var})
+
+        set(${dst_list} ${var} PARENT_SCOPE)
+
+    endfunction(pkgconfig)
+
+
+        
+
+    #pkgconfig_check(${lib_name} ret)
+
+	pkgconfig_check(${lib_name} found)
+
+    if ("${found}" STREQUAL "")
+    	find_library(${lib_name} ${lib_name} ${lib_dir})
+    	target_link_libraries(${target} PUBLIC ${${lib_name}})
+    	return()
+    endif ()
+
+    pkgconfig(--cflags ${lib_name} var)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${var}" PARENT_SCOPE)
+
+
+    link_library(${lib_name} libraries)
+    string(REPLACE " " ";" libraries ${libraries})
+
+    link_directory(${lib_name} lib_dir)
+
+    foreach(lib ${libraries})
+        find_library(${lib} ${lib} ${lib_dir})
+        target_link_libraries(${target} PUBLIC ${${lib}})
+    endforeach(lib)
+
+
+
+endfunction(pkgconfig_add_library)
+
+function(install_it PROJECT_NAME)
+    set(header_directory "../include/${PROJECT_NAME}/")
+    set(_library_dir lib)
+    set(INCLUDE_INSTALL_ROOT_DIR include)
+    set(INCLUDE_INSTALL_DIR ${INCLUDE_INSTALL_ROOT_DIR}/${PROJECT_NAME})
+    set(LIB_INSTALL_DIR "${_library_dir}${LIB_SUFFIX}")
+
+    set(_INSTALL_DESTINATIONS
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION ${LIB_INSTALL_DIR}
+            ARCHIVE DESTINATION "lib${LIB_SUFFIX}"
+    )
+    #install(TARGETS setting-manager ${_INSTALL_DESTINATIONS})
+
+    install(TARGETS ${PROJECT_NAME} ${_INSTALL_DESTINATIONS})
+    install(
+            DIRECTORY ${header_directory}
+            DESTINATION ${INCLUDE_INSTALL_DIR}
+            FILES_MATCHING PATTERN "*.hh"
+    )
+endfunction(install_it)
