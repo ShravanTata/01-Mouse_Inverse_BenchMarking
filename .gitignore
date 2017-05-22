@@ -2,4 +2,7 @@
 *.dylib
 controllers/hindLimb/hindLimb
 controllers/conveyer/conveyer
+controllers/ekerbergMouse_wbt8/ekerbergMouse_wbt8
 build
+*.o
+*.so
