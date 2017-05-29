@@ -1,15 +1,15 @@
 ENABLE_DEBUG = False
-PC_LIBS = 
-DATAROOTDIR = /home/tatarama/.local/usr/share
+PC_LIBS = -lc++
+DATAROOTDIR = /Users/tatarama/.local/usr/share
 VERSION_MAJOR = 5
-EXEC_PREFIX = /home/tatarama/.local/usr
-SYSCONFDIR = /home/tatarama/.local/usr/etc
-DATADIR = /home/tatarama/.local/usr/share
-PREFIX = /home/tatarama/.local/usr
+EXEC_PREFIX = /Users/tatarama/.local/usr
+SYSCONFDIR = /Users/tatarama/.local/usr/etc
+DATADIR = /Users/tatarama/.local/usr/share
+PREFIX = /Users/tatarama/.local/usr
 VERSION = 5.0
-PC_CFLAGS = 
-LIBEXECDIR = /home/tatarama/.local/usr/libexec
+PC_CFLAGS = -stdlib=libc++
+LIBEXECDIR = /Users/tatarama/.local/usr/libexec
 VERSION_MINOR = 0
 ENABLE_OPTIMIZATION = True
-BINDIR = /home/tatarama/.local/usr/bin
-MANDIR = /home/tatarama/.local/usr/share
+BINDIR = /Users/tatarama/.local/usr/bin
+MANDIR = /Users/tatarama/.local/usr/share

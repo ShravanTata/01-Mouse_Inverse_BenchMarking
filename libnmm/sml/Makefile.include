@@ -127,7 +127,7 @@ endif
 
 
 ifeq ($(UNAME),Darwin)
-	3FBL_LIB_NAME_FLAGS = -dynamiclib -Wl,-headerpad_max_install_names,-undefined,dynamic_lookup,-compatibility_version,$(VERSION_MAJOR),-current_version,$(VERSION_MAJOR),-install_name,../../../libnmm/sml/libsml.$(SHARED_EXT)
+	3FBL_LIB_NAME_FLAGS = -dynamiclib -Wl,-headerpad_max_install_names,-undefined,dynamic_lookup,-compatibility_version,$(VERSION_MAJOR),-current_version,$(VERSION_MAJOR),-install_name,../../libnmm/sml/libsml.$(SHARED_EXT)
 	#3FBL_LDFLAGS += -lrt
 else
 	3FBL_LIB_NAME_FLAGS = -Wl,-soname,$(notdir $(3FBL_TARGET_SHARED)).$(VERSION_MAJOR)

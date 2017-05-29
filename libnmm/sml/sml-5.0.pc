@@ -1,4 +1,4 @@
-prefix=/home/tatarama/.local/usr
+prefix=/Users/tatarama/.local/usr
 libdir=${prefix}/lib
 includedir=${prefix}/include
 staticlib=${libdir}/libsml.a
@@ -7,5 +7,5 @@ Name: sml
 Description: sml control library
 Requires:
 Version: 5.0
-Cflags: -I${includedir}/sml-5.0 
-Libs: -L${libdir} -l:libsml.so.5.0 
+Cflags: -I${includedir}/sml-5.0 -stdlib=libc++
+Libs: -L${libdir} -l:libsml.so.5.0 -lc++
