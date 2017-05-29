@@ -6,3 +6,7 @@ controllers/ekerbergMouse_wbt8/ekerbergMouse_wbt8
 build
 *.o
 *.so
+*.d
+libnmm/.o/*
+controllers/ekerbergMouse_wbt8/ekerbergMouse_wbt8
+.*.*
