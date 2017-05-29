@@ -1,7 +1,7 @@
 #VRML_SIM V8.5 utf8
 WorldInfo {
   gravity 0 -981 0
-  physics "mouse_hind_support_check"
+  physics "mouse_hind_support"
   basicTimeStep 1
   contactProperties [
     ContactProperties {
@@ -1067,6 +1067,6 @@ Supervisor {
       0 0 0
     ]
   }
-  controller "hindLimb"
+  controller "ekerbergMouse_wbt8"
   controllerArgs "settings_pendulum.xml sample"
 }
