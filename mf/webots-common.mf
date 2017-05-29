@@ -1,0 +1,42 @@
+UNAME ?= $(shell uname)
+
+ifeq ($(UNAME),Darwin)
+webots_homes = /Applications/Webots.app
+else
+webots_homes = \
+        /usr/local/webots$(subst .,,$(webotsVersion)) \
+        /usr/local/webots-manager/$(webotsVersion)
+endif
+
+WEBOTS_HOME = $(word 1,$(wildcard $(webots_homes)))
+
+ifeq ($(WEBOTS_HOME),)
+$(error Failed to find webots home is webots installed?)
+endif
+
+
+EXTRA_CFLAGS=-mmacosx-version-min=10.7 -arch i386 -arch x86_64
+
+MAIN_FOLDER ?= main
+
+ifeq ($(UNAME),Darwin)
+
+#IF SOURCES HAVE NOT BEEN INSTALLED YOU CAN SPECIFY THE PATH TO THE LIBRARY AND HEADERS DIRECTLY
+#AS SHOWN BELOW. CAN BE USED FOR MAC OSX Compatibilty
+$(info $(UNAME))
+
+LIBRARIES=-lCppController -ldl -L../../libnmm/sml -lsml -L/usr/local/lib/spinalDynamics -ldynamics -lsetting-manager -ltimer -lyaml-cpp
+CFLAGS=-O2 -std=gnu++0x -stdlib=libc++ -I../../libnmm -I/usr/local/include/spinalDynamics/
+else
+ifeq ($(Optimization),"0")
+LIBRARIES=-lCppController -ldl `pkg-config` $(shell pkg-config --libs $(pkgs))
+CFLAGS=-O2 -std=gnu++0x $(shell pkg-config --cflags $(pkgs)) -I../../../../lib/
+else
+LIBRARIES=-lCppController -ldl `pkg-config --libs liboptimization-2.0` $(shell pkg-config --libs $(pkgs))
+CFLAGS=-O2 -std=gnu++0x `pkg-config --cflags $(pkgs)`  -I../../../../lib/ -I../sources/ -DOPTIMIZATION
+INCLUDE=`pkg-config --cflags $(pkgs)`
+endif
+endif
+#CC_SOURCES = $(wildcard ../sources/*.cc) ../$(MAIN_FOLDER)/main.cc
+CXX_SOURCES = $(wildcard ../sources/*.cc) ../$(MAIN_FOLDER)/main.cc
+
